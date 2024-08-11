@@ -35,6 +35,7 @@ router.post('/', (req, res) => {
 router.get('/history', async (req, res) => { 
   try { 
     const searchHistory = await historyService.getSearchHistory();
+    res.status(200).json({searchHistory})
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to get search history.'})
