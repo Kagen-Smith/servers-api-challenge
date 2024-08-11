@@ -1,22 +1,30 @@
 {
-  "name": "develop",
+  "name": "weather-dashboard",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "start": "npm run build && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run client:build && npm run server",
+    "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3001 && npm run client:dev\"",
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "client:build": "cd client && npm run build",
+    "client:dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "render-build": "npm install && npm run build"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "inquirer": "^9.2.19",
-    "typescript": "^5.4.5"
-  },
   "devDependencies": {
-    "@types/inquirer": "^9.0.7",
-    "@types/node": "^20.12.7"
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0",
+    "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "bootstrap": "^5.3.3"
   }
 }
