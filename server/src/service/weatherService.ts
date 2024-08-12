@@ -82,7 +82,7 @@ private async destructureLocationData(locationData: Coordinates): Promise<Coordi
   }
   // TODO: Create fetchAndDestructureLocationData method
 private async fetchAndDestructureLocationData(): Promise<Coordinates> {
-  const locationData = await this.fetchLocationData(this.name);
+  const locationData = await this.fetchLocationData(name);
   return this.destructureLocationData(locationData);
 }
   // TODO: Create fetchWeatherData method
