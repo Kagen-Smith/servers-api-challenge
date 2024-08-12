@@ -1,6 +1,7 @@
+import fs from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
-import fs from 'fs';
+
 
 const baseURL: string = process.env.API_BASE_URL! || `https://api.openweathermap.org`
 const apiKey: string =  process.env.API_KEY! || "d6e209a4939923e24d5d9b282dd40ca9";
