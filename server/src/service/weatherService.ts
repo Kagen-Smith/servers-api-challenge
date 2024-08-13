@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const baseURL: string = process.env.API_BASE_URL! || ''; 
+const baseURL: string = process.env.API_BASE_URL! || '';
 const apiKey: string = process.env.API_KEY! || ' ';
 
 // TODO: Define an interface for the Coordinates object
@@ -11,13 +11,33 @@ interface Coordinates {
 }
 
 // TODO: Define a class for the Weather object
-interface Weather {
+interface WeatherObject {
+  city: string;
   temp: number;
   wind: number;
   humidity: number;
   description: string;
   icon: string;
   date: string;
+}
+class Weather {
+  city: string;
+  temp: number;
+  wind: number;
+  humidity: number;
+  description: string;
+  icon: string;
+  date: string;
+
+  constructor(weatherObject: WeatherObject) {
+    this.city = weatherObject.city;
+    this.temp = weatherObject.temp;
+    this.wind = weatherObject.wind;
+    this.humidity = weatherObject.humidity;
+    this.description = weatherObject.description;
+    this.icon = weatherObject.icon;
+    this.date = weatherObject.date;
+  }
 }
 
 
@@ -33,32 +53,32 @@ class WeatherService {
     this.apiKey = apiKey;
     this.name = name;
   }
-// TODO: Create fetchLocationData method
+  // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string): Promise<Coordinates> {
     const response = await fetch(`${this.baseURL}/geo/1.0/direct?q=${query}&limit=1&appid=${this.apiKey}`);
     const data = await response.json();
-  
+
     if (data.length === 0) {
       throw new Error('No location found');
     }
-  
+
     const locationData = data[0];
-  
+
     return {
       lat: locationData.lat,
       lon: locationData.lon,
     };
   }
-  
+
   // TODO: Create destructureLocationData method
-private async destructureLocationData(locationData: Coordinates): Promise<Coordinates> {
-  const { lat, lon } = locationData;
-  return { lat, lon };
-}
+  private async destructureLocationData(locationData: Coordinates): Promise<Coordinates> {
+    const { lat, lon } = locationData;
+    return { lat, lon };
+  }
 
   // TODO: Create buildGeocodeQuery method
   private async buildGeocodeQuery(): Promise<string> {
-    const response = await fetch(`${this.baseURL}/geo/1.0/direct?q=${this.name}&limit=1&appid=${this.apiKey}`);``
+    const response = await fetch(`${this.baseURL}/geo/1.0/direct?q=${this.name}&limit=1&appid=${this.apiKey}`); ``
     const data = await response.json();
     const locationData = data[0];
     const { lat, lon } = locationData;
@@ -70,12 +90,12 @@ private async destructureLocationData(locationData: Coordinates): Promise<Coordi
     return `${lat},${lon}`;
   }
   // TODO: Create fetchAndDestructureLocationData method
-private async fetchAndDestructureLocationData(): Promise<Coordinates> {
-  const locationData = await this.fetchLocationData(name);
-  return this.destructureLocationData(locationData);
-}
+  private async fetchAndDestructureLocationData(): Promise<Coordinates> {
+    const locationData = await this.fetchLocationData(name);
+    return this.destructureLocationData(locationData);
+  }
   // TODO: Create fetchWeatherData method
-private async fetchWeatherData(coordinates: Coordinates): Promise<Weather> {
+  private async fetchWeatherData(coordinates: Coordinates): Promise<Weather> {
     const query = await this.buildWeatherQuery(coordinates);
     const response = await fetch(`${this.baseURL}/data/2.5/weather?${query}&appid=${this.apiKey}`);
     const data = await response.json();
