@@ -99,14 +99,9 @@ private async fetchWeatherData(coordinates: Coordinates): Promise<Weather> {
     return new Weather(temp, wind, humidity, description, icon, date);
   }
   // TODO: Complete buildForecastArray method
-  private buildForecastArray(currentWeather: Weather, weatherData: any[]): Weather[] {
-    const forecastArray: Weather[] = [];
-    weatherData.forEach((weather: any) => {
-      const { temp, wind, humidity, description, icon } = weather;
-      const date = new Date(weather.dt * 1000).toISOString();
-      forecastArray.push(new Weather(temp, wind, humidity, description, icon, date));
-    });
-    return forecastArray;
+  private buildForecastArray(currentWeather: WeatherData, weatherData: any[]): Weather[] {
+    console.log('Building forecast array:' weatherData);
+    
   }
   // TODO: Complete getWeatherForCity method
   async getWeatherForCity(city: string) {
