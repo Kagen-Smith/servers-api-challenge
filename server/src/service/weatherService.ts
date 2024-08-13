@@ -1,10 +1,8 @@
-import fs from 'fs';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const baseURL: string = process.env.API_BASE_URL! || 'https://api.openweathermap.org'; 
-const apiKey: string = process.env.API_KEY! || 'd6e209a4939923e24d5d9b282dd40ca9';
-const name = " ";
+const baseURL: string = process.env.API_BASE_URL! || ''; 
+const apiKey: string = process.env.API_KEY! || ' ';
 
 // TODO: Define an interface for the Coordinates object
 interface Coordinates {
@@ -13,22 +11,13 @@ interface Coordinates {
 }
 
 // TODO: Define a class for the Weather object
-class Weather {
+interface Weather {
   temp: number;
   wind: number;
   humidity: number;
   description: string;
   icon: string;
   date: string;
-
-  constructor(temp: number, wind: number, humidity: number, description: string, icon: string, date: string) {
-    this.temp = temp;
-    this.wind = wind;
-    this.humidity = humidity;
-    this.description = description;
-    this.icon = icon;
-    this.date = date;
-  }
 }
 
 
@@ -101,7 +90,11 @@ private async fetchWeatherData(coordinates: Coordinates): Promise<Weather> {
   // TODO: Complete buildForecastArray method
   private buildForecastArray(currentWeather: WeatherData, weatherData: any[]): Weather[] {
     console.log('Building forecast array:' weatherData);
-    
+    return new Weather({
+      city: currentWeather.city,
+      date: entry.dt_txt,
+      icon: entry
+    })
   }
   // TODO: Complete getWeatherForCity method
   async getWeatherForCity(city: string) {
