@@ -39,37 +39,60 @@ class Weather {
     this.date = weatherObject.date;
   }
 }
-
+interface WeatherResponse {
+  city: {name: string};
+  list: Array<{
+    dt: number;
+    dt_txt: string;
+    weather: Array<{
+      icon: string;
+      description: string;
+    }>;
+    main: {
+      temp: number;
+      humidity: number;
+    };
+    wind: {
+      speed: number;
+    };
+  }>;
+}
 
 // TODO: Complete the WeatherService class
 class WeatherService {
   // TODO: Define the baseURL, API key, and city name properties  
   private baseURL?: string;
   private apiKey?: string;
-  private name?: string;
 
-  constructor(baseURL: string, apiKey: string, name: string) {
+  constructor(baseURL: string, apiKey: string) {
     this.baseURL = baseURL;
     this.apiKey = apiKey;
-    this.name = name;
   }
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string): Promise<Coordinates> {
-    const response = await fetch(`${this.baseURL}/geo/1.0/direct?q=${query}&limit=1&appid=${this.apiKey}`);
-    const data = await response.json();
+    try {
+      console.log('Fetching location data with query:', query);
+      const response = await fetch(query);
+      if (!response.ok) {
+        throw new Error(`Location data fetch failed: ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log('Location data:', data);
 
-    if (data.length === 0) {
-      throw new Error('No location found');
+      if (!data || data.length === 0) {
+        throw new Error('No location found');
+      }
+
+      const locationData = data[0];
+      return {
+        lat: locationData.lat,
+        lon: locationData.lon,
+      };
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+      throw error;
     }
-
-    const locationData = data[0];
-
-    return {
-      lat: locationData.lat,
-      lon: locationData.lon,
-    };
   }
-
   // TODO: Create destructureLocationData method
   private async destructureLocationData(locationData: Coordinates): Promise<Coordinates> {
     const { lat, lon } = locationData;
