@@ -1,1 +1,66 @@
-[]
+[
+	{
+		"name": "paris",
+		"id": "d1820687-0dab-4488-8842-39e40de982ad"
+	},
+	{
+		"name": "San Diego",
+		"id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+	},
+    {
+        "name": "New York",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+    {
+        "name": "Los Angeles",
+        "id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+    },
+    {
+        "name": "San Francisco",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+    {
+        "name": "London",
+        "id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+    },
+    {
+        "name": "Berlin",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+    {
+        "name": "Madrid",
+        "id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+    },
+    {
+        "name": "Rome",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+    {
+        "name": "Tokyo",
+        "id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+    },
+    {
+        "name": "Beijing",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+    {
+        "name": "Sydney",
+        "id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+    },
+    {
+        "name": "Cape Town",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+    {
+        "name": "Rio de Janeiro",
+        "id": "543c3611-5832-42c8-bdf9-60bcdb4df8a6"
+    },
+    {
+        "name": "Buenos Aires",
+        "id": "d1820687-0dab-4488-8842-39e40de982ad"
+    },
+	{
+		"name": "Monaco",
+		"id": "d5182a57-fe7f-44f8-822d-a21c72ca6058"
+	}
+]
